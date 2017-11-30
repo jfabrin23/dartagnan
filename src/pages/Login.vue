@@ -24,6 +24,18 @@
 </template>
 
 <script>
+import firebase from 'firebase'
+let config = {
+  apiKey: 'AIzaSyBRWW_JdjSzyzByx150Xq5OekCl-lQEbDw',
+  authDomain: 'dartagnan-9ef83.firebaseapp.com',
+  databaseURL: 'https://dartagnan-9ef83.firebaseio.com',
+  projectId: 'dartagnan-9ef83',
+  storageBucket: '',
+  messagingSenderId: '56647523031'
+}
+
+firebase.initializeApp(config)
+let dbUser = firebase.database().ref('dartagnan-9ef83')
 export default {
   name: 'Login',
   data () {
@@ -35,9 +47,12 @@ export default {
       loading: false
     }
   },
+  firebase: {
+    users: dbUser
+  },
   methods: {
     entrar () {
-      this.$router.push('home')
+      console.log(dbUser)
     }
   }
 }
