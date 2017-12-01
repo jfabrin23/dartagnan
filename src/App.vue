@@ -133,4 +133,55 @@ body {
 .flex5 {
   flex-grow: 5;
 }
+.form {
+  padding-left: 2vw;
+  padding-right: 2vw;
+  padding-top: 2vh;
+  padding-bottom: 2vh;
+}
+
+.form label {
+  font-size: 12px;
+}
+
+.form input[type="text"], .form input[type="tel"], .form input[type="email"], .form input[type="password"]{
+  background-color: transparent;
+  color: var(--corPrincipal);
+  word-wrap: break-word;
+  word-break: break-all;
+  width: 100%;
+  margin-bottom: 20px;
+  border: 0;
+  border-bottom: 1px solid var(--corPrincipal);
+  padding-left: 0;
+  font-size: 2.5vh;
+  position: relative
+}
+
+.form .btn-default{
+  width: 10vw;
+  height: 5vh;
+  margin-top: 4vh;
+  background-color: #4CAF50;
+  color: var(--corSecundaria);
+  border: none;
+  border-radius: 1vw;
+  cursor: pointer;
+}
+.form .btn-default:hover {
+  background-color: #46a049;
+}
+
+.form .btn-secondary{
+  height: 5vh;
+  margin-top: 4vh;
+  background-color: #4CAF50;
+  color: var(--corSecundaria);
+  border: none;
+  border-radius: 1vw;
+  cursor: pointer;
+}
+.form .btn-secondary:hover {
+  background-color: #46a049;
+}
 </style>

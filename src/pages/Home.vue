@@ -2,7 +2,20 @@
   <div class="home">
     <Header/>
     <div class="conteudo container wrap justify-center align-items">
-      <div class="item basis4 container justify-center align-center">
+      <Modal v-if="showModal" @close="showModal = false">
+        <h3 slot="header">{{modal.header}}</h3>
+        <div slot="body" class="form">
+          <div class="wrap container">
+            <div class="flex">
+              <label for="login">Código de Barras:</label>
+              <input type="text" id="login" v-model="entrada.CodigoBarras">
+            </div>
+          </div>
+        </div>
+        <label slot="footer">Entradas Registradas: 10 / 100</label>
+      </Modal>
+
+      <div class="item basis4 container justify-center align-center" @click="openModal('Registrar Entrada','','')">
         <div class="container column align-center justify-center">
           <icon name="barcode" scale="4"></icon>
           <div class="ex-txt">
@@ -61,21 +74,41 @@
 
 <script>
 import Header from '@/components/Header'
+import Modal from '@/components/Modal'
 import Icon from 'vue-awesome'
 
 export default {
   name: 'Home',
-  components: { Header, Icon },
+  components: {
+    Header,
+    Icon,
+    Modal
+  },
   data () {
     return {
       login: {
         Login: '',
         Senha: ''
       },
-      loading: false
+      modal: {
+        header: '',
+        body: '',
+        footer: ''
+      },
+      entrada: {
+        CodigoBarra: '',
+      },
+      loading: false,
+      showModal: false
     }
   },
-  method: {
+  methods: {
+    openModal (titulo, corpo, rodape) {
+      this.modal.header = titulo
+      this.modal.body = corpo
+      this.modal.footer = rodape
+      this.showModal = true
+    }
   }
 }
 </script>

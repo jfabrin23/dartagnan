@@ -14,7 +14,7 @@
       </div>
     </div>
 
-    <div class="basis1">
+    <div class="basis1 user">
       <div class="container center">
         <div>{{user.name}}</div>
       </div>
@@ -53,5 +53,15 @@ export default {
 
   .header .link:hover{
     color: var(--corTextoHover)
+  }
+
+  .header .user {
+    margin-right: 1vw;
+    color: var(--corSecundaria)
+  }
+
+  .header .user:hover {
+    color: var(--corTextoHover);
+    cursor: pointer;
   }
 </style>

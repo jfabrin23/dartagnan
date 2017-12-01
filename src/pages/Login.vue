@@ -15,7 +15,7 @@
 
         <center>
           <p>
-            <button @click="entrar">Entrar</button>
+            <button class="btn-default" @click="entrar">Entrar</button>
           </p>
         </center>
       </div>
@@ -107,44 +107,5 @@ export default {
   .caixaLogin .erro{
     text-align: center;
     color: red;
-  }
-
-  .form {
-    padding-left: 2vw;
-    padding-right: 2vw;
-    padding-top: 2vh;
-    padding-bottom: 2vh;
-  }
-
-  .form label {
-    font-size: 12px;
-  }
-
-  .form input[type="text"], .form input[type="tel"], .form input[type="email"], .form input[type="password"]{
-    background-color: transparent;
-    color: var(--corPrincipal);
-    word-wrap: break-word;
-    word-break: break-all;
-    width: 100%;
-    margin-bottom: 20px;
-    border: 0;
-    border-bottom: 1px solid var(--corPrincipal);
-    padding-left: 0;
-    font-size: 2.5vh;
-    position: relative
-  }
-
-  .form button{
-    width: 10vw;
-    height: 5vh;
-    margin-top: 4vh;
-    background-color: #4CAF50;
-    color: var(--corSecundaria);
-    border: none;
-    border-radius: 1vw;
-    cursor: pointer;
-  }
-  .form button:hover {
-    background-color: #46a049;
   }
 </style>
