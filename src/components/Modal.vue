@@ -84,7 +84,8 @@ export default {
 
 .modal-container .modal-footer {
   border-top: 1px solid #CCC;
-  padding: 5px 30px;
+  margin: 0px 30px;
+  padding: 10px 25px;
 }
 
 .modal-default-button {

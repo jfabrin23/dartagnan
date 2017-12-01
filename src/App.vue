@@ -174,7 +174,8 @@ body {
 
 .form .btn-secondary{
   height: 5vh;
-  margin-top: 4vh;
+  padding-left: 1vw;
+  padding-right: 1vw;
   background-color: #4CAF50;
   color: var(--corSecundaria);
   border: none;
@@ -183,5 +184,13 @@ body {
 }
 .form .btn-secondary:hover {
   background-color: #46a049;
+}
+
+.clicavel {
+  cursor: pointer;
+  color: var(--corVerdeLink)
+}
+.clicavel:hover {
+  color: var(--corVerdeHover)
 }
 </style>

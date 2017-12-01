@@ -1,6 +1,6 @@
 <template>
   <div class="header wrap container align-center">
-    <div class="logo flex">
+    <div class="logo flex clicavel" @click="$router.push('home')">
       <h1>Logo</h1>
     </div>
 

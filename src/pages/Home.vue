@@ -5,10 +5,15 @@
       <Modal v-if="showModal" @close="showModal = false">
         <h3 slot="header">{{modal.header}}</h3>
         <div slot="body" class="form">
-          <div class="wrap container">
+          <div class="wrap container center">
             <div class="flex">
               <label for="login">Código de Barras:</label>
-              <input type="text" id="login" v-model="entrada.CodigoBarras">
+              <input type="text" id="codigoBarra" v-model="entrada.CodigoBarras">
+            </div>
+            <div class="basis1">
+              <center>
+                <button class="btn-secondary" @click="registrarEntrada"><icon name="plus" scale="1"></icon></button>
+              </center>
             </div>
           </div>
         </div>
@@ -33,7 +38,7 @@
         </div>
       </div>
 
-      <div class="item basis4 container justify-center align-center">
+      <div class="item basis4 container justify-center align-center" @click="acessar('venda')">
         <div class="container column align-center justify-center">
           <icon name="shopping-basket" scale="4"></icon>
           <div class="ex-txt">
@@ -96,7 +101,7 @@ export default {
         footer: ''
       },
       entrada: {
-        CodigoBarra: '',
+        CodigoBarra: ''
       },
       loading: false,
       showModal: false
@@ -108,6 +113,18 @@ export default {
       this.modal.body = corpo
       this.modal.footer = rodape
       this.showModal = true
+    },
+    registrarEntrada () {
+      console.log('Teste')
+    },
+    acessar (local) {
+      console.log(local)
+      this.$router.push(local)
+    }
+  },
+  watch: {
+    'entrada.CodigoBarra': function (CodigoBarra) {
+      console.log(CodigoBarra)
     }
   }
 }
