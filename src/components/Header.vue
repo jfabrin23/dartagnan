@@ -16,14 +16,18 @@
 
     <div class="basis1">
       <div class="container center">
-        <div>Teste 2</div>
+        <div>{{user.name}}</div>
       </div>
     </div>
   </div>
 </template>
 <script>
 export default {
-
+  computed: {
+    user () {
+      return this.$store.state.user
+    }
+  }
 }
 </script>
 

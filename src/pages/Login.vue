@@ -19,6 +19,7 @@
           </p>
         </center>
       </div>
+      <p class="erro" :v-show="error.message">{{error.message}}</p>
     </div>
   </div>
 </template>
@@ -28,14 +29,11 @@ import firebase from 'firebase'
 let config = {
   apiKey: 'AIzaSyBRWW_JdjSzyzByx150Xq5OekCl-lQEbDw',
   authDomain: 'dartagnan-9ef83.firebaseapp.com',
-  databaseURL: 'https://dartagnan-9ef83.firebaseio.com',
-  projectId: 'dartagnan-9ef83',
-  storageBucket: '',
-  messagingSenderId: '56647523031'
+  databaseURL: 'https://dartagnan-9ef83.firebaseio.com'
 }
 
 firebase.initializeApp(config)
-let dbUser = firebase.database().ref('dartagnan-9ef83')
+var dbUser = firebase.database().ref('users')
 export default {
   name: 'Login',
   data () {
@@ -44,7 +42,10 @@ export default {
         Login: '',
         Senha: ''
       },
-      loading: false
+      loading: false,
+      error: {
+        message: ''
+      }
     }
   },
   firebase: {
@@ -52,7 +53,12 @@ export default {
   },
   methods: {
     entrar () {
-      console.log(dbUser)
+      if (this.users.find(element => element.user === this.login.Login && element.password === this.login.Senha)) {
+        this.$store.commit('setUser', this.users.find(element => element.user === this.login.Login && element.password === this.login.Senha))
+        this.$router.push('home')
+      } else {
+        this.error.message = 'usuario ou senha inválidos'
+      }
     }
   }
 }
@@ -96,6 +102,11 @@ export default {
   .caixaLogin h1{
     text-align: center;
     animation-duration: 1s;
+  }
+
+  .caixaLogin .erro{
+    text-align: center;
+    color: red;
   }
 
   .form {
