@@ -5,8 +5,10 @@ import App from './App'
 import router from './router'
 import store from './store'
 import VueFire from 'vuefire'
+import money from 'v-money'
 
 Vue.use(VueFire)
+Vue.use(money, {precision: 2})
 
 Vue.config.productionTip = false
 

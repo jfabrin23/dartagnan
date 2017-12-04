@@ -1,6 +1,29 @@
 <template>
   <div class="produto">
     <Header/>
+    <Modal v-if="showModal" @close="showModal = false">
+      <h3 slot="header">Lista de Produtos</h3>
+      <div slot="body">      
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Descrição</th>
+              <th>Valor (R$)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="registro in produtos" :key="registro['.key']">
+              <td>{{registro['.key']}}</td>
+              <td>{{registro.Descricao}}</td>
+              <td>{{registro.Valor | money}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div slot="footer">
+      </div>
+    </Modal>
     <div class="container center">
       <div class="conteudo align-stretch">
         <div class="form">
@@ -12,7 +35,7 @@
               <div class="flex">
                 <input type="text" id="produto" v-model="produto.Descricao">
               </div>
-              <div class="basis1 clicavel" @click="buscarProduto">
+              <div class="basis1 clicavel" @click="listarProduto">
                 <center>
                   <icon name="search" scale="1"></icon>
                 </center>
@@ -39,8 +62,8 @@
 
           <div class="container justify-end">
             <p>
-              <button type="reset" class="btn-reset" @click="entrar">Limpar</button>
-              <button type="button" class="btn-default" @click="entrar">Salvar</button>
+              <button type="reset" class="btn-reset">Limpar</button>
+              <button type="button" class="btn-default">Salvar</button>
             </p>
           </div>
         </div>
@@ -52,20 +75,34 @@
 <script>
 import Header from '@/components/Header'
 import Icon from 'vue-awesome'
+import Modal from '@/components/Modal'
+import Firebase from 'firebase'
 
+var dbProdutos = Firebase.database().ref('product')
 export default {
   name: 'Venda',
   components: {
     Header,
-    Icon
+    Icon,
+    Modal
   },
   data () {
     return {
       loading: false,
-      produto: {}
+      produto: {},
+      showModal: false
     }
   },
+  firebase: {
+    produtos: dbProdutos
+  },
   methods: {
+    listarProduto () {
+      this.showModal = true
+    },
+    add () {
+
+    }
   }
 }
 </script>

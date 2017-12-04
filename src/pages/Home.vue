@@ -14,7 +14,7 @@
           {{erro.Entrada}}
         </div>
         <div slot="footer">
-          Entradas Registradas: {{checkins.length}} / 250
+          Entradas Registradas: {{checkins.length}} / {{limite}}
         </div>
       </Modal>
 
@@ -107,7 +107,8 @@ export default {
       showModal: false,
       erro: {
         Entrada: ''
-      }
+      },
+      limite: 43
     }
   },
   firebase: {
@@ -121,12 +122,16 @@ export default {
       this.showModal = true
     },
     registrarEntrada () {
-      if (!this.checkins.find(element => element.CodigoBarras === this.entrada.CodigoBarra)) {
-        dbCheckin.push({CodigoBarras: this.entrada.CodigoBarra, Data: new Date().toString()})
-        this.entrada.CodigoBarra = ''
-        this.erro.Entrada = ''
+      if (this.checkins.length < this.limite) {
+        if (!this.checkins.find(element => element.CodigoBarras === this.entrada.CodigoBarra)) {
+          dbCheckin.push({CodigoBarras: this.entrada.CodigoBarra, Data: new Date().toString()})
+          this.entrada.CodigoBarra = ''
+          this.erro.Entrada = ''
+        } else {
+          this.erro.Entrada = 'Código já existente'
+        }
       } else {
-        this.erro.Entrada = 'Código já existente'
+        this.erro.Entrada = 'Limite de ' + this.limite + ' atingido'
       }
     },
     acessar (local) {

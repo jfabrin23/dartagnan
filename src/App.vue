@@ -223,4 +223,26 @@ hr {
   opacity: 0.2;
   margin-bottom: 10vh;
 }
+
+table {
+  width: 75vw;
+  border-radius: 3px;
+  background-color: #fff;
+}
+th {
+  background-color: var(--corVerdeHover);
+  color: rgba(255,255,255,0.66);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+td {
+  background-color: #f9f9f9;
+  border-bottom: 1px solid #CCC
+}
+th, td {
+  min-width: 20vw;
+  padding: 1vw 2vw;
+}
 </style>
