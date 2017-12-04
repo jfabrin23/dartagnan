@@ -25,15 +25,9 @@
 </template>
 
 <script>
-import firebase from 'firebase'
-let config = {
-  apiKey: 'AIzaSyBRWW_JdjSzyzByx150Xq5OekCl-lQEbDw',
-  authDomain: 'dartagnan-9ef83.firebaseapp.com',
-  databaseURL: 'https://dartagnan-9ef83.firebaseio.com'
-}
+import Firebase from 'firebase'
 
-firebase.initializeApp(config)
-var dbUser = firebase.database().ref('users')
+var dbUser = Firebase.database().ref('users')
 export default {
   name: 'Login',
   data () {

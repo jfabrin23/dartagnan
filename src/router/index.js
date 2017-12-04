@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Login from '@/pages/Login'
 import Home from '@/pages/Home'
 import Venda from '@/pages/Venda'
+import Produto from '@/pages/Produto'
 
 Vue.use(Router)
 
@@ -23,6 +24,11 @@ export default new Router({
       path: '/venda',
       name: 'venda',
       component: Venda
+    },
+    {
+      path: '/produto',
+      name: 'produto',
+      component: Produto
     },
     {
       path: '*',

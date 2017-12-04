@@ -8,16 +8,14 @@
           <div class="wrap container center">
             <div class="flex">
               <label for="login">Código de Barras:</label>
-              <input type="text" id="codigoBarra" v-model="entrada.CodigoBarras">
-            </div>
-            <div class="basis1">
-              <center>
-                <button class="btn-secondary" @click="registrarEntrada"><icon name="plus" scale="1"></icon></button>
-              </center>
+              <input type="text" id="codigoBarra" v-model="entrada.CodigoBarra" v-on:keyup.enter="registrarEntrada">
             </div>
           </div>
+          {{erro.Entrada}}
         </div>
-        <label slot="footer">Entradas Registradas: 10 / 100</label>
+        <div slot="footer">
+          Entradas Registradas: {{checkins.length}} / 250
+        </div>
       </Modal>
 
       <div class="item basis4 container justify-center align-center" @click="openModal('Registrar Entrada','','')">
@@ -81,7 +79,9 @@
 import Header from '@/components/Header'
 import Modal from '@/components/Modal'
 import Icon from 'vue-awesome'
+import Firebase from 'firebase'
 
+var dbCheckin = Firebase.database().ref('checkin')
 export default {
   name: 'Home',
   components: {
@@ -104,8 +104,14 @@ export default {
         CodigoBarra: ''
       },
       loading: false,
-      showModal: false
+      showModal: false,
+      erro: {
+        Entrada: ''
+      }
     }
+  },
+  firebase: {
+    checkins: dbCheckin
   },
   methods: {
     openModal (titulo, corpo, rodape) {
@@ -115,16 +121,16 @@ export default {
       this.showModal = true
     },
     registrarEntrada () {
-      console.log('Teste')
+      if (!this.checkins.find(element => element.CodigoBarras === this.entrada.CodigoBarra)) {
+        dbCheckin.push({CodigoBarras: this.entrada.CodigoBarra, Data: new Date().toString()})
+        this.entrada.CodigoBarra = ''
+        this.erro.Entrada = ''
+      } else {
+        this.erro.Entrada = 'Código já existente'
+      }
     },
     acessar (local) {
-      console.log(local)
       this.$router.push(local)
-    }
-  },
-  watch: {
-    'entrada.CodigoBarra': function (CodigoBarra) {
-      console.log(CodigoBarra)
     }
   }
 }

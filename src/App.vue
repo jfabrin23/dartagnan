@@ -3,6 +3,14 @@
 </template>
 
 <script>
+import Firebase from 'firebase'
+let config = {
+  apiKey: 'AIzaSyBRWW_JdjSzyzByx150Xq5OekCl-lQEbDw',
+  authDomain: 'dartagnan-9ef83.firebaseapp.com',
+  databaseURL: 'https://dartagnan-9ef83.firebaseio.com'
+}
+
+Firebase.initializeApp(config)
 export default {
   name: 'app'
 }
@@ -144,7 +152,7 @@ body {
   font-size: 12px;
 }
 
-.form input[type="text"], .form input[type="tel"], .form input[type="email"], .form input[type="password"]{
+.form input[type="text"], .form input[type="tel"], .form input[type="email"], .form input[type="password"], .form input[type="number"]{
   background-color: transparent;
   color: var(--corPrincipal);
   word-wrap: break-word;
@@ -172,6 +180,20 @@ body {
   background-color: #46a049;
 }
 
+.form .btn-reset{
+  width: 10vw;
+  height: 5vh;
+  margin-top: 4vh;
+  background-color: #888;
+  color: var(--corSecundaria);
+  border: none;
+  border-radius: 1vw;
+  cursor: pointer;
+}
+.form .btn-reset:hover {
+  background-color: #777;
+}
+
 .form .btn-secondary{
   height: 5vh;
   padding-left: 1vw;
@@ -186,11 +208,19 @@ body {
   background-color: #46a049;
 }
 
+.form h1{
+  color: var(--corVerdeLink)
+}
+
 .clicavel {
   cursor: pointer;
   color: var(--corVerdeLink)
 }
 .clicavel:hover {
   color: var(--corVerdeHover)
+}
+hr {
+  opacity: 0.2;
+  margin-bottom: 10vh;
 }
 </style>

@@ -6,7 +6,7 @@
 
     <div class="flex basis2">
       <div class="container center">
-        <div class="link">Produto</div>
+        <div class="link" @click="$router.push('produto')">Produto</div>
         <div class="link">Teste 2</div>
         <div class="link">Teste 3</div>
         <div class="link">Usuários</div>
