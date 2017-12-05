@@ -3,20 +3,26 @@
     <Header/>
     <Modal v-if="showModal" @close="showModal = false">
       <h3 slot="header">Lista de Produtos</h3>
-      <div slot="body">      
+      <div slot="body">
         <table>
           <thead>
             <tr>
               <th>#</th>
               <th>Descrição</th>
               <th>Valor (R$)</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
             <tr v-for="registro in produtos" :key="registro['.key']">
-              <td>{{registro['.key']}}</td>
+              <td class="center">{{registro['.key']}}</td>
               <td>{{registro.Descricao}}</td>
-              <td>{{registro.Valor | money}}</td>
+              <td>{{formatNumber(registro.Valor)}}</td>
+              <td class="center">
+                <div class="clicavel" @click="selecionar(registro), showModal = false">
+                  <icon name="edit" scale="1"></icon>
+                </div>
+              </td>
             </tr>
           </tbody>
         </table>
@@ -24,14 +30,14 @@
       <div slot="footer">
       </div>
     </Modal>
-    <div class="container center">
-      <div class="conteudo align-stretch">
+    <div class="container justify-center">
+      <div class="conteudo">
         <div class="form">
           <h1>Cadastro de Produto</h1>
           <hr />
           <p>
             <label for="produto">Descrição:</label>
-            <div class="container justify-center">
+            <div class="container">
               <div class="flex">
                 <input type="text" id="produto" v-model="produto.Descricao">
               </div>
@@ -43,11 +49,11 @@
             </div>
           </p>
 
-          <div class="container justify-end">
+          <div class="container justify-start">
             <div class="flex">
               <p>
                 <label for="valor">Valor:</label>
-                <input type="tel" id="valor" v-model="produto.Valor">
+                <money v-model="produto.Valor" id="valor" v-bind="money"></money>
               </p>
             </div>
             <div class="basis1">
@@ -63,7 +69,7 @@
           <div class="container justify-end">
             <p>
               <button type="reset" class="btn-reset">Limpar</button>
-              <button type="button" class="btn-default">Salvar</button>
+              <button type="button" class="btn-default" @click="add">Salvar</button>
             </p>
           </div>
         </div>
@@ -88,8 +94,20 @@ export default {
   },
   data () {
     return {
+      produto: {
+        Descricao: '',
+        Valor: 0.00,
+        Estoque: 0
+      },
+      money: {
+        decimal: ',',
+        thousands: '.',
+        prefix: 'R$ ',
+        suffix: '',
+        precision: 2,
+        masked: false
+      },
       loading: false,
-      produto: {},
       showModal: false
     }
   },
@@ -97,11 +115,21 @@ export default {
     produtos: dbProdutos
   },
   methods: {
+    formatNumber (number) {
+      return new Intl.NumberFormat('pt-BR', {style: 'currency', currency: 'BRL'}).format(number)
+    },
     listarProduto () {
       this.showModal = true
     },
     add () {
-
+      console.log(this.produto.Descricao)
+      if (this.produto['.key']) {
+        dbProdutos = this.produto
+      }
+      console.log(this.produtos[0].Descricao)
+    },
+    selecionar (registro) {
+      this.produto = registro
     }
   }
 }
