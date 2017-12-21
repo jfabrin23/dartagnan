@@ -241,8 +241,13 @@ td {
   background-color: #f9f9f9;
   border-bottom: 1px solid #CCC
 }
+.center {
+  text-align: center;
+}
+.justify {
+  text-align: justify;
+}
 th, td {
-  min-width: 20vw;
   padding: 1vw 2vw;
 }
 </style>
