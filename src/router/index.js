@@ -4,6 +4,7 @@ import Login from '@/pages/Login'
 import Home from '@/pages/Home'
 import Venda from '@/pages/Venda'
 import Produto from '@/pages/Produto'
+import Config from '@/pages/Config'
 
 Vue.use(Router)
 
@@ -24,6 +25,11 @@ export default new Router({
       path: '/venda',
       name: 'venda',
       component: Venda
+    },
+    {
+      path: '/config',
+      name: 'config',
+      component: Config
     },
     {
       path: '/produto',

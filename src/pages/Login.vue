@@ -51,7 +51,7 @@ export default {
         this.$store.commit('setUser', this.users.find(element => element.user === this.login.Login && element.password === this.login.Senha))
         this.$router.push('home')
       } else {
-        this.error.message = 'usuario ou senha inválidos'
+        this.error.message = 'Usuário ou Senha inválidos'
       }
     }
   }

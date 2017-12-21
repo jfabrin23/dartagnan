@@ -1,7 +1,7 @@
 <template>
   <div class="header wrap container align-center">
     <div class="logo flex clicavel" @click="$router.push('home')">
-      <h1>Logo</h1>
+      <img src="../assets/logo/logo.png">
     </div>
 
     <div class="flex basis2">
@@ -37,6 +37,11 @@ export default {
     height: 10vh;
     background-color: var(--corVerdeLink);
     align-items: center;
+  }
+
+  .header .logo img{
+    height: 8vh;
+    padding: 1vh
   }
 
   .header h1{

@@ -54,7 +54,7 @@
         </div>
       </div>
 
-      <div class="item basis4 container justify-center align-center">
+      <div class="item basis4 container justify-center align-center" @click="acessar('config')">
         <div class="container column align-center justify-center">
           <icon name="cogs" scale="4"></icon>
           <div class="ex-txt">
