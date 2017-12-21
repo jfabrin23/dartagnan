@@ -1,34 +1,43 @@
 <template>
-  <div class="header wrap container align-center">
-    <div class="logo flex clicavel" @click="$router.push('home')">
-      <img src="../assets/logo/logo.png">
-    </div>
+  <div>
+    <div class="header wrap container align-center">
+      <div class="logo flex clicavel" @click="$router.push('home')">
+        <img src="../assets/logo/logo.png">
+      </div>
 
-    <div class="menu-desk">
-      <div class="basis3">
-        <div class="container center">
-          <div class="link" @click="$router.push('produto')">Produto</div>
-          <div class="link">Teste 2</div>
-          <div class="link">Teste 3</div>
-          <div class="link">Usuários</div>
-          <div class="user container center" @click="inAtivar = true" >
-              <img class="avatar" src="../assets/avatar.png">
-              {{user.name}}
-
-              <div v-bind:class="{'teste':inAtivar}">
-              </div>
+      <div class="menu-desk">
+        <div class="basis3">
+          <div class="container center">
+            <div class="link" @click="$router.push('produto')">Produto</div>
+            <div class="link">Teste 2</div>
+            <div class="link">Teste 3</div>
+            <div class="link">Usuários</div>
+            <div class="user container center" @click="inAtivar = !inAtivar, inUser = !inUser">
+                <img class="avatar" src="../assets/avatar.png">
+                {{user.name}}
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <div class="menu-mobile">
-      <h1>Teste</h1>
+      <div class="menu-mobile">
+        <icon class="link" name="bars" scale="1.5"></icon>
+      </div>
     </div>
+    <Drawer :in-ativar="inAtivar">
+      <div slot="body" class="container row wrap justify-around align-center" v-show="inUser" style="height:100%">
+        <icon name="edit" scale="2" />
+        <icon name="asterisk" scale="2" />
+        <icon name="sign-out" scale="2" />
+      </div>
+    </Drawer>
   </div>
 </template>
 <script>
+import Icon from 'vue-awesome'
+import Drawer from '@/components/Drawer'
 export default {
+  components: { Drawer, Icon },
   computed: {
     user () {
       return this.$store.state.user
@@ -36,7 +45,17 @@ export default {
   },
   data () {
     return {
-      inAtivar: false
+      inAtivar: false,
+      inUser: false
+    }
+  },
+  methods: {
+    bodyDrawer (option) {
+      switch (option) {
+        case 'user':
+          this.inUser = true
+          break
+      }
     }
   }
 }
@@ -44,6 +63,7 @@ export default {
 
 <style lang="css" scoped>
   .header {
+    z-index: 9997;
     width: 100vw;
     height: 10vh;
     background-color: var(--corVerdeLink);
@@ -51,7 +71,7 @@ export default {
   }
 
   .header .logo img{
-    height: 8vh;
+    height: 5vh;
     padding: 1vh
   }
 
@@ -81,22 +101,6 @@ export default {
   .header .user:hover {
     color: var(--corTextoHover);
     cursor: pointer;
-  }
-
-  .teste {
-    margin-top:10vh;
-    height: 100px;
-    background-color: black;
-    animation: teste 2s ease;
-  }
-
-  @keyframes teste {
-    0% {
-      height: 0px;
-    }
-    100% {
-      height: 100px;
-    }
   }
 
   .header .avatar {

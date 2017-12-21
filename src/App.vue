@@ -105,6 +105,8 @@ body {
   justify-content: center;
   align-items: center
 }
+
+/* item */
 .basis1 {
   flex-basis: 100px
 }
